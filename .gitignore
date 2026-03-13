@@ -1,3 +1,6 @@
-.env            # Ignores .env file
-__pycache__/    # Ignores __pycache__/ folder
-.pyc            # Ignores .pyc
+# Enviorement variable
+.env
+# Annoying pycache folder
+__pycache__/
+# Annoying .pyc files
+.pyc

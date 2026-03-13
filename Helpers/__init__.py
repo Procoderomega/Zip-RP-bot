@@ -1,0 +1,1 @@
+from .auto_init_metaclass import MetaInit
