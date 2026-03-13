@@ -18,7 +18,6 @@ MyClient = commands.Bot(command_prefix="^",intents=intents)
 @MyClient.event
 async def on_ready():
     print(f"{MyClient.user} Serving 🛜...\nZip ID 🪪: {MyClient.user.id}")
-print(f"token: {TOKEN}")
 #* Initializing bot
 if __name__ == "__main__":
     MyClient.run(TOKEN)
