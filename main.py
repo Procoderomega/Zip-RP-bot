@@ -2,8 +2,13 @@ from colorama import Fore, Style, init
 from discord.ext import commands
 from dotenv import load_dotenv
 from Configs import bot_config
+from Random import botfetch
+from Helpers import OK
 import os
 import discord
+
+def clearfunc():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 # Loading .env variables
 load_dotenv()
@@ -26,7 +31,7 @@ class MyBot(commands.Bot):
         await self.load_extension("Cogs.RolePlay")
         await self.load_extension("Helpers.sync_slash")
         for cog in cogs:
-            print(f"{cog:<18}[{Fore.GREEN}OK{Style.RESET_ALL}]")
+            print(f"{cog:<18}{OK}")
 MyClient = MyBot(command_prefix=PREFIX, intents=intents, help_command=None)
 
 # On ready event
@@ -35,6 +40,8 @@ async def on_ready():
     activity = discord.Streaming(name="Fundamental Paper Education",url="https://www.youtube.com/watch?v=0x7zdgK-FFU",platform="YouTube")
     await MyClient.change_presence(activity=activity)
     print(f"{MyClient.user} Serving 🛜...\nZip ID 🪪: {MyClient.user.id}\nStreaming success ✅.")
+    clearfunc()
+    botfetch(MyClient)
 # Initializing bot
 if __name__ == "__main__":
     MyClient.run(TOKEN)

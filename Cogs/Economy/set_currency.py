@@ -1,9 +1,8 @@
 from discord.ext import commands
 from pathlib import Path
-import tomllib  # solo para leer
-import tomli_w  # para escribir
+import json
 
-CONFIG_PATH = Path(__file__).parent.parent.parent / "Configs" / "config.toml"
+CONFIG_PATH = Path(__file__).parent.parent.parent / "Configs" / "json" / "economy_general_configs.json"
 
 class EconomyConfigMeta(commands.Cog):
     def __init__(self, bot):
@@ -11,21 +10,21 @@ class EconomyConfigMeta(commands.Cog):
 
     @commands.hybrid_command(name="set_economy_symbol", description="Set the economy symbol")
     async def set_economy_symbol_meta(self, ctx: commands.Context, symbol: str):
-        # Leer config con tomllib
+        guild_id = str(ctx.guild.id)
+        
         with open(CONFIG_PATH, "rb") as f:
-            config = tomllib.load(f)
-
-        # Validar longitud del símbolo
+            config = json.load(f)
+            
         if len(symbol) > 2:
-            await ctx.send("❌ Symbol too long! Use 1 or 2 characters max.")
-            return
-
+            return await ctx.send("❌ Symbol too long! Use 1 or 2 characters max.")
+        if guild_id not in config["guilds"]:
+            config["guilds"][guild_id] = {}
         # Actualizar símbolo
-        config["Economy"]["Economy_Symbol"] = symbol
+        config["guilds"][guild_id]["symbol"] = symbol
 
         # Guardar cambios con tomli-w
-        with open(CONFIG_PATH, "wb") as f:
-            tomli_w.dump(config, f)
+        with open(CONFIG_PATH, "w") as f:
+            json.dump(config, f, indent=4)
 
         await ctx.send(f"✅ Economy symbol updated to: {symbol}", ephemeral= True)
         

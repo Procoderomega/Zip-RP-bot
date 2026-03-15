@@ -8,8 +8,9 @@ import discord
 class WalletMeta(MetaInit):
     @commands.hybrid_command(name="wallet", description="See your current balance")
     async def wallet_meta(self, ctx: commands.Context):
-        current_balance = get_balance(ctx.author.id)
-        MONEY_SYMBOL = get_economy_symbol()
+        guild_id = str(ctx.guild.id)
+        current_balance = get_balance(ctx.guild.id, ctx.author.id)
+        MONEY_SYMBOL = get_economy_symbol(guild_id)
         embed = discord.Embed(
             title="Wallet 💵",
             description=f"{ctx.author.mention} your wallet currently has `{MONEY_SYMBOL}`{current_balance} 💵 !",

@@ -4,3 +4,9 @@
 __pycache__/
 # Annoying .pyc files
 .pyc
+# .db Files uhhh
+*.db 
+*.sqlite
+*.sqlite3
+# my jsons files hehe
+economy_general_configs.json 

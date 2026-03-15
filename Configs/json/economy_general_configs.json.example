@@ -1,0 +1,9 @@
+{
+    "guilds": {
+        "guild id": {
+            "symbol": "yeah, the symbol"
+        },
+    }
+}
+
+Note: remember to remove the .example extension in this archive

@@ -1,25 +1,50 @@
 # CHANGELOG
 
-## 1.2.0 - 2026-03-14
+## 1.3.0 - 2026-03-14
 ### Added
-- Sistema de economía con base de datos `SQLite` (`Services/economy/economy_service.py`) para `balance`, `add_balance`, `remove_balance` y `pay`
-- Comando híbrido `work` para generar ganancias aleatorias configurables
-- Comando híbrido `wallet` para consultar el balance actual con embed
-- Comando híbrido `set_economy_symbol` para personalizar el símbolo de la economía en `Configs/config.toml`
-- Comandos de roleplay con `slash commands`: `hug`, `kiss` y `slap` con GIFs aleatorios
-- Comandos de roleplay `pat_student` y `pat_teacher` con selección de personajes (estudiantes y maestros)
-- JSONs de contenido para roleplay en `Cogs/RolePlay/JSON`
-- Utilidad de sincronización de slash commands `syncSlash` con opciones `global`, `ts`, `clear_global`, `clear_ts`
-- Helpers para autoinicialización de cogs (`MetaInit`) y lectura del símbolo de economía
-- Configuración centralizada en `Configs/config.toml` para `Prefix`, `Guild_Id`, `MIN_GAIN`, `MAX_GAIN` y `Economy_Symbol`
-- Gestión de token por `.env` y ejemplo en `.env.example`
+- Admin command `delete_user_balance` to reset a user's balance
+- Debugging helpers with `OK`, `DEBUG`, and `FAIL` states
+- Per-server JSON config for economy in `Configs/json/economy_general_configs.json`
+- `Random` module with `botfetch` for visual bot status summary
+- New per-server economy fields: `wallet` and `bank`
+- Example file economy_general_configs.json.example to guide per-server configurations
 
 ### Changed
-- Presencia del bot en modo `Streaming` al iniciar
-- Carga modular de cogs en `main.py` (`Economy`, `Utils`, `RolePlay`, `sync_slash`)
+- Economy is now separated per server (`guild_id`) in database and services
+- `set_economy_symbol` now stores the symbol per server in JSON
+- `work` and `wallet` now use per-server symbols and balances tied to `guild_id`
+- Cog loading messages now use the `OK` helper
+- Console is cleared on startup and the `botfetch` summary is printed
+- `.gitignore` expanded to ignore `*.db` and `*.sqlite*` files
+- `.gitignore` now ignores `economy_general_configs.json`
+
+### Removed
+- `Economy_Symbol` config from `Configs/config.toml` (migrated to JSON)
+
+---
+
+## 1.2.0 - 2026-03-14
+### Added
+- Economy system with `SQLite` database (`Services/economy/economy_service.py`) for `balance`, `add_balance`, `remove_balance`, and `pay`
+- Hybrid command `work` to generate configurable random earnings
+- Hybrid command `wallet` to check the current balance with an embed
+- Hybrid command `set_economy_symbol` to customize the economy symbol in `Configs/config.toml`
+- Roleplay `slash commands`: `hug`, `kiss`, and `slap` with random GIFs
+- Roleplay commands `pat_student` and `pat_teacher` with character selection (students and teachers)
+- Roleplay content JSON files located in `Cogs/RolePlay/JSON`
+- Slash command synchronization utility `syncSlash` with options `global`, `ts`, `clear_global`, `clear_ts`
+- Helper utilities for automatic cog initialization (`MetaInit`) and economy symbol retrieval
+- Centralized configuration in `Configs/config.toml` for `Prefix`, `Guild_Id`, `MIN_GAIN`, `MAX_GAIN`, and `Economy_Symbol`
+- Token management using `.env` with an example file `.env.example`
+
+### Changed
+- Bot presence set to `Streaming` on startup
+- Modular cog loading in `main.py` (`Economy`, `Utils`, `RolePlay`, `sync_slash`)
 
 ### Notes
-- Cogs de `Moderation` y `Fun` reservados para futuras versiones
+- `Moderation` and `Fun` cogs reserved for future versions
+
+--- 
 
 ## 1.1.0
 ### Added
