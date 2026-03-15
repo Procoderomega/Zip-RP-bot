@@ -18,13 +18,16 @@ intents.message_content = True
 class MyBot(commands.Bot):
     async def setup_hook(self):
         # Loading da cogs
-        cogs = ["Utils cogs"]
+        cogs = ["Utils cogs","Economy cogs","RolePlay cogs","Sync slash cog"] #! Mod and Fun cogs are not ready to be loaded yet
         #// await self.load_extension("Cogs.Moderation")
         #// await self.load_extension("Cogs.Fun")
+        await self.load_extension("Cogs.Economy")
         await self.load_extension("Cogs.Utils")
+        await self.load_extension("Cogs.RolePlay")
+        await self.load_extension("Helpers.sync_slash")
         for cog in cogs:
             print(f"{cog:<18}[{Fore.GREEN}OK{Style.RESET_ALL}]")
-MyClient = MyBot(command_prefix="^", intents=intents, help_command=None)
+MyClient = MyBot(command_prefix=PREFIX, intents=intents, help_command=None)
 
 # On ready event
 @MyClient.event

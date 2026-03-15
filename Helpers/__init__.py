@@ -1,1 +1,2 @@
 from .auto_init_metaclass import MetaInit
+from .eco_symb_getter import get_economy_symbol

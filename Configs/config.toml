@@ -1,0 +1,8 @@
+[General]
+Prefix = "^"
+Guild_Id = 1476692849985851594
+
+[Economy]
+MIN_GAIN = 100
+MAX_GAIN = 1000
+Economy_Symbol = "^&"
