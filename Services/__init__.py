@@ -1,6 +1,8 @@
 
 #~ Economy Services
+from .economy.economy_service import get_balance_card
 from .economy.economy_service import get_balance
+from .economy.economy_service import add_balance_card
 from .economy.economy_service import add_balance
 from .economy.economy_service import remove_balance
 from .economy.economy_service import delete_balance

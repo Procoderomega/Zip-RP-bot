@@ -6,7 +6,10 @@ __pycache__/
 .pyc
 # .db Files uhhh
 *.db 
+*.db-journal
 *.sqlite
 *.sqlite3
 # my jsons files hehe
 economy_general_configs.json 
+# Some unrequired files/folders
+tests/

@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## 1.5.0 - 2026-04-4
+### Added
+- Hybrid admin command `add_balance` to add money directly to a member's wallet balance
+- Admin slash command `show_user_balance` to inspect another member's current wallet balance
+- Public slash command `bank` to check the current bank/card balance
+- Public slash command `steal` to steal a random amount from another member when they have money available
+- Admin slash command `add_balanceto_card` to deposit money directly into a member's bank/card balance
+- Bank/card balance service helpers `add_balance_card` and `get_balance_card`
+
+### Changed
+- Economy cog files are now reorganized into `public`, `mod`, and `admin` folders
+- `Cogs/Economy/__init__.py` now registers the expanded economy command set from the new folder structure
+- `Services/__init__.py` now exports the new bank/card balance helpers
+- `Services/economy/economy_service.py` now separates wallet logic from bank/card logic
+- `set_economy_symbol` now logs a clearer debug message after updating the server currency symbol
+- `.env.example` now includes a reminder to rename the file before use
+
+### Notes
+- This release expands the economy system with bank/card support, a stealing command, and broader admin balance-management tooling
+
+## 1.4.0 - 2026-03-21
+### Added
+- Hybrid admin command `add_balance` to add money directly to a member's balance
+- Admin slash command `show_user_balance` to inspect another member's current balance
+- Economy cog registration for the new admin balance-management commands in `Cogs/Economy/__init__.py`
+
+### Changed
+- `set_economy_symbol` now logs a clearer debug message after updating the server currency symbol
+
+### Notes
+- This release strengthens admin tooling for per-server economy moderation and support
+
+---
+
 ## 1.3.0 - 2026-03-14
 ### Added
 - Admin command `delete_user_balance` to reset a user's balance
@@ -71,3 +105,7 @@
 - `.gitignore` file
 - `changelog.md` file
 - `main.py` file
+
+
+# NOTES
+- So this changelog is fully developed by AI cuz me lazy to write all the changes, so if anything doesnt look like the changelog is 100% AIs fault not mine tehe-....

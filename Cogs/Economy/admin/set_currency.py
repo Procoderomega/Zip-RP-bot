@@ -1,8 +1,9 @@
 from discord.ext import commands
 from pathlib import Path
+from Helpers import DEBUG
 import json
 
-CONFIG_PATH = Path(__file__).parent.parent.parent / "Configs" / "json" / "economy_general_configs.json"
+CONFIG_PATH = Path(__file__).parent.parent.parent.parent / "Configs" / "json" / "economy_general_configs.json"
 
 class EconomyConfigMeta(commands.Cog):
     def __init__(self, bot):
@@ -27,5 +28,5 @@ class EconomyConfigMeta(commands.Cog):
             json.dump(config, f, indent=4)
 
         await ctx.send(f"✅ Economy symbol updated to: {symbol}", ephemeral= True)
-        
-        print("All good")
+        msg = "Successfully changed symbol"
+        print(f"{msg:<45}{DEBUG}")

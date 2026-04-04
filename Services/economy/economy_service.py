@@ -14,9 +14,9 @@ c.execute("""CREATE TABLE IF NOT EXISTS users(
     ) """)
 conn.commit()
 
-#~ ---------------------
-#~ Economy Service Logic
-#~ ---------------------
+#~ -----------------------------
+#~ Economy Service Logic Wallet
+#~ -----------------------------
 
 def get_balance(guild_id, user_id):
     c.execute("SELECT wallet FROM users WHERE guild_id=? AND user_id=?", (guild_id, user_id))
@@ -65,3 +65,28 @@ def delete_balance(guild_id, user_id):
         (guild_id, user_id)
     )
     conn.commit()
+
+#~ ---------------------------
+#~ Economy Service Logic Bank
+#~ ---------------------------
+
+def add_balance_card(guild_id, target_id, amount):
+    c.execute(
+        "INSERT OR IGNORE INTO users (guild_id,user_id) VALUES(?,?)",
+        (guild_id, target_id)
+        )
+    c.execute(
+        "UPDATE users SET bank = bank + ? WHERE guild_id=? AND user_id=?",
+        (amount,guild_id,target_id)
+    )
+    conn.commit()
+
+def get_balance_card(guild_id, user_id):
+    c.execute(
+        "SELECT bank FROM users WHERE guild_id=? AND user_id=?",
+        (guild_id,user_id)
+    )
+    result = c.fetchone()
+    if result:
+        return result[0]
+    return 0
